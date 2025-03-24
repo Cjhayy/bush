@@ -5,8 +5,8 @@ import { parseAbsoluteToLocal } from "@internationalized/date";
 
 export function sortTasks<T extends Task>(tasks: T[], sort: SortingVariant[]) {
   tasks.sort((first, second) => {
-    for (let sorting of sort) {
-      let cmp = compareTask(first, second, sorting);
+    for (const sorting of sort) {
+      const cmp = compareTask(first, second, sorting);
       if (cmp === 0) {
         continue;
       }
@@ -62,10 +62,10 @@ function compareTaskDate<T extends Task>(self: T, other: T): number {
     return -1;
   }
 
-  let selfInfo = new DueDate(self.due);
-  let otherInfo = new DueDate(other.due);
+  const selfInfo = new DueDate(self.due);
+  const otherInfo = new DueDate(other.due);
 
-  let dateCmp = selfInfo.compareDate(otherInfo);
+  const dateCmp = selfInfo.compareDate(otherInfo);
 
   // Then lets check if we are the same day, if not
   // sort just based on the day.
@@ -89,8 +89,8 @@ function compareTaskDate<T extends Task>(self: T, other: T): number {
 }
 
 function compareTaskDateAdded<T extends Task>(self: T, other: T): number {
-  let selfDate = parseAbsoluteToLocal(self.createdAt);
-  let otherDate = parseAbsoluteToLocal(other.createdAt);
+  const selfDate = parseAbsoluteToLocal(self.createdAt);
+  const otherDate = parseAbsoluteToLocal(other.createdAt);
 
   return selfDate.compare(otherDate) < 0 ? -1 : 1;
 }

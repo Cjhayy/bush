@@ -82,7 +82,7 @@ type TestCase = {
 };
 
 describe("group by priority", () => {
-  const testcases: TestCase[] = [
+  let testcases: TestCase[] = [
     {
       description: "should group tasks by priority",
       input: [
@@ -131,19 +131,19 @@ describe("group by priority", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const groups = groupBy(tc.input, GroupVariant.Priority);
+      let groups = groupBy(tc.input, GroupVariant.Priority);
       expect(groups).toStrictEqual(tc.expected);
     });
   }
 });
 
 describe("group by project", () => {
-  const projectOne = makeProject("1", { name: "Project One", order: 1 });
-  const projectTwo = makeProject("2", { name: "Project Two", order: 2 });
+  let projectOne = makeProject("1", { name: "Project One", order: 1 });
+  let projectTwo = makeProject("2", { name: "Project Two", order: 2 });
 
-  const testcases: TestCase[] = [
+  let testcases: TestCase[] = [
     {
       description: "should group by projects",
       input: [
@@ -165,23 +165,23 @@ describe("group by project", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const groups = groupBy(tc.input, GroupVariant.Project);
+      let groups = groupBy(tc.input, GroupVariant.Project);
       expect(groups).toStrictEqual(tc.expected);
     });
   }
 });
 
 describe("group by section", () => {
-  const projectOne = makeProject("1", { name: "Project One", order: 1 });
-  const projectTwo = makeProject("2", { name: "Project Two", order: 2 });
+  let projectOne = makeProject("1", { name: "Project One", order: 1 });
+  let projectTwo = makeProject("2", { name: "Project Two", order: 2 });
 
-  const sectionOne = makeSection("1", "1", { name: "Section One", order: 1 });
-  const sectionTwo = makeSection("1", "2", { name: "Section Two", order: 2 });
-  const sectionThree = makeSection("2", "3", { name: "Section Three", order: 2 });
+  let sectionOne = makeSection("1", "1", { name: "Section One", order: 1 });
+  let sectionTwo = makeSection("1", "2", { name: "Section Two", order: 2 });
+  let sectionThree = makeSection("2", "3", { name: "Section Three", order: 2 });
 
-  const testcases: TestCase[] = [
+  let testcases: TestCase[] = [
     {
       description: "should group tasks by project & section",
       input: [
@@ -215,16 +215,16 @@ describe("group by section", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const groups = groupBy(tc.input, GroupVariant.Section);
+      let groups = groupBy(tc.input, GroupVariant.Section);
       expect(groups).toStrictEqual(tc.expected);
     });
   }
 });
 
 describe("group by date", () => {
-  const testcases: TestCase[] = [
+  let testcases: TestCase[] = [
     {
       description: "groups tasks by due date",
       input: [
@@ -303,18 +303,18 @@ describe("group by date", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const groups = groupBy(tc.input, GroupVariant.Date);
+      let groups = groupBy(tc.input, GroupVariant.Date);
       expect(groups).toStrictEqual(tc.expected);
     });
   }
 });
 
 describe("group by label", () => {
-  const labelOne = makeLabel("foo");
-  const labelTwo = makeLabel("bar");
-  const testcases: TestCase[] = [
+  let labelOne = makeLabel("foo");
+  let labelTwo = makeLabel("bar");
+  let testcases: TestCase[] = [
     {
       description: "should group tasks by labels",
       input: [
@@ -377,9 +377,9 @@ describe("group by label", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const groups = groupBy(tc.input, GroupVariant.Label);
+      let groups = groupBy(tc.input, GroupVariant.Label);
       expect(groups).toStrictEqual(tc.expected);
     });
   }

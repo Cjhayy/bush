@@ -10,7 +10,7 @@ type TaskContext = {
 };
 
 export function showTaskContext(ctx: TaskContext, position: Point) {
-  const i18n = t().query.contextMenu;
+  let i18n = t().query.contextMenu;
   new Menu()
     .addItem((menuItem) =>
       menuItem
@@ -44,10 +44,10 @@ export function showTaskContext(ctx: TaskContext, position: Point) {
 // then remove the link. Using electron's openExternal doesn't
 // work on mobile unfortunately.
 function openExternal(url: string): void {
-  const link = document.createElement("a");
+  let link = document.createElement("a");
   link.href = url;
 
-  const clickEvent = new MouseEvent("click", {
+  let clickEvent = new MouseEvent("click", {
     bubbles: true,
     cancelable: true,
     view: window,

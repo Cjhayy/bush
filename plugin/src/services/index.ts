@@ -9,7 +9,7 @@ export type Services = {
   todoist: TodoistAdapter;
 };
 
-export const makeServices = (plugin: TodoistPlugin): Services => {
+export let makeServices = (plugin: TodoistPlugin): Services => {
   return {
     modals: new ModalHandler(plugin),
     token: new VaultTokenAccessor(plugin.app.vault),

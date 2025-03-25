@@ -23,13 +23,13 @@ export class TodoistApiClient {
       path += `?filter=${encodeURIComponent(filter)}`;
     }
 
-    var response = await this.do(path, "GET");
+    const response = await this.do(path, "GET");
 
     return camelize(JSON.parse(response.body)) as Task[];
   }
 
   public async createTask(content: string, options?: CreateTaskParams): Promise<void> {
-    var body = snakify({ content: content, ...(options ?? {}) });
+    const body = snakify({ content: content, ...(options ?? {}) });
     await this.do("/tasks", "POST", body);
   }
 
@@ -38,22 +38,22 @@ export class TodoistApiClient {
   }
 
   public async getProjects(): Promise<Project[]> {
-    var response = await this.do("/projects", "GET");
+    const response = await this.do("/projects", "GET");
     return camelize(JSON.parse(response.body)) as Project[];
   }
 
   public async getSections(): Promise<Section[]> {
-    var response = await this.do("/sections", "GET");
+    const response = await this.do("/sections", "GET");
     return camelize(JSON.parse(response.body)) as Section[];
   }
 
   public async getLabels(): Promise<Label[]> {
-    var response = await this.do("/labels", "GET");
+    const response = await this.do("/labels", "GET");
     return camelize(JSON.parse(response.body)) as Label[];
   }
 
   private async do(path: string, method: string, json?: object): Promise<WebResponse> {
-    var params: RequestParams = {
+    const params: RequestParams = {
       url: `https://api.todoist.com/rest/v2${path}`,
       method: method,
       headers: {
@@ -71,7 +71,7 @@ export class TodoistApiClient {
       context: params,
     });
 
-    var response = await this.fetcher.fetch(params);
+    const response = await this.fetcher.fetch(params);
 
     debug({
       msg: "Received Todoist API response",
@@ -90,7 +90,7 @@ export class TodoistApiError extends Error {
   public statusCode: number;
 
   constructor(request: RequestParams, response: WebResponse) {
-    var message = `[${request.method}] ${request.url} returned '${response.statusCode}: ${response.body}`;
+    const message = `[${request.method}] ${request.url} returned '${response.statusCode}: ${response.body}`;
     super(message);
     this.statusCode = response.statusCode;
   }

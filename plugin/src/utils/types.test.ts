@@ -12,7 +12,7 @@ type TestObject = {
   };
 };
 
-const baseObject: TestObject = {
+let baseObject: TestObject = {
   a: 1,
   b: 2,
   nested: {
@@ -30,7 +30,7 @@ describe("DeepPartial.merge", () => {
     expected: TestObject;
   };
 
-  const testcases: Testcase[] = [
+  let testcases: Testcase[] = [
     {
       description: "should not modify if partial empty",
       partial: {},
@@ -89,9 +89,9 @@ describe("DeepPartial.merge", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const result = DeepPartial.merge(baseObject, tc.partial);
+      let result = DeepPartial.merge(baseObject, tc.partial);
       expect(result).toEqual(tc.expected);
     });
   }
@@ -103,7 +103,7 @@ describe("DeepPartial.isComplete", () => {
     expected: boolean;
   };
 
-  const testcases: Testcase[] = [
+  let testcases: Testcase[] = [
     {
       description: "should return true for a complete partial object",
       partial: {
@@ -158,9 +158,9 @@ describe("DeepPartial.isComplete", () => {
     },
   ];
 
-  for (const tc of testcases) {
+  for (let tc of testcases) {
     it(tc.description, () => {
-      const result = DeepPartial.isComplete(baseObject, tc.partial);
+      let result = DeepPartial.isComplete(baseObject, tc.partial);
       expect(result).toBe(tc.expected);
     });
   }

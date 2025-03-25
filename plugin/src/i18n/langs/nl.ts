@@ -1,7 +1,7 @@
 import type { Translations } from "@/i18n/translation";
 import type { DeepPartial } from "@/utils/types";
 
-export const nl: DeepPartial<Translations> = {
+export let nl: DeepPartial<Translations> = {
   settings: {
     general: {
       header: "Algemeen",
